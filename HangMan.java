@@ -8,7 +8,7 @@ public class HangMan {
 
 
     //word bank txt file
-    File wordBank = new File("src/fruits.txt");
+    File wordBank = new File("fruits.txt");
 
     //Array list to hold words from word bank
     ArrayList<String> words = new ArrayList<>();
@@ -23,6 +23,7 @@ public class HangMan {
     boolean gameOver = false;
     int lives=6;
     char displayWord[];
+    char userGuess;
 
 
     //Constructor calls methods to get word and display game
@@ -69,9 +70,29 @@ public class HangMan {
             System.out.print("Enter a letter: ");
             //takes only first character(even if player enters multiple characters)
             // of input and converts to lowercase
-            char guess = input.next().toLowerCase().charAt(0);
+            while(true)
+            {
+                 String userInput = input.next().toLowerCase();
+
+                if(userInput.length()!= 1)
+                {
+                    System.out.println("Error only enter ONE character!");
+                    continue;
+                }
+                userGuess = userInput.charAt(0);
+
+                if(!Character.isLetter(userGuess))
+                {
+                    System.out.println("Error please enter a single LETTER");
+                    continue;
+                }
+
+                break;
+                    
+            }
+
             System.out.println();
-            wordGuess(guess);
+            wordGuess(userGuess);
             checkWin();
         }
         input.close();
