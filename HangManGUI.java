@@ -4,6 +4,7 @@ import java.awt.event.*;
 
 public class HangManGUI extends JFrame {
 
+    HangManDrawing drawingPanel;
     HangMan game;
 
     JLabel wordLabel;
@@ -13,10 +14,13 @@ public class HangManGUI extends JFrame {
 
     JTextField inputField;
     JButton guessButton;
+    JButton retryButton;
 
     public HangManGUI() throws Exception {
 
         game = new HangMan();
+        drawingPanel = new HangManDrawing(game);
+        add(drawingPanel, BorderLayout.CENTER);
 
         setTitle("Hangman Game");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -47,13 +51,20 @@ public class HangManGUI extends JFrame {
 
         JPanel subBottom = new JPanel();
         subBottom.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 10));
+
         inputField = new JTextField(5);
         inputField.setFont(new Font("Arial", Font.BOLD, 50));
         inputField.setHorizontalAlignment(JTextField.CENTER);
         guessButton = new JButton("Guess");
         guessButton.setFont(new Font("Arial", Font.BOLD, 30));
+
+        retryButton = new JButton("Retry");
+        retryButton.setFont(new Font("Arial", Font.BOLD, 30));
+        retryButton.setVisible(false); // hidden at start
+
         subBottom.add(inputField);
         subBottom.add(guessButton);
+        subBottom.add(retryButton);
 
         
         messageLabel = new JLabel("Enter a letter.");
@@ -74,6 +85,27 @@ public class HangManGUI extends JFrame {
                 handleGuess();
             }
         });
+        
+        retryButton.addActionListener(new ActionListener() {
+             public void actionPerformed(ActionEvent e) {
+                try {
+                    game = new HangMan();
+                } catch (Exception e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }  // new game
+                drawingPanel.updateGame(game);
+                wordLabel.setText(game.getSizeOfWord()+" Letters:"+game.getDisplayWord());
+                livesLabel.setText("Lives: " + game.getLives());
+                wordsUsed.setText("Guesses: "+game.getWordsGuessed());
+
+                messageLabel.setText("Enter a letter.");
+                guessButton.setEnabled(true);
+                retryButton.setVisible(false);
+            }
+            
+        });
+
 
         setVisible(true);
     }
@@ -96,12 +128,15 @@ public class HangManGUI extends JFrame {
         wordsUsed.setText("Guesses: "+game.getWordsGuessed());
 
         if (game.isWinner()) {
-            messageLabel.setText("You WIN! The Word Was: "+game.getDisplayWord());
+            messageLabel.setText("You WIN! The Word Was: "+game.getSelectedWord());
             guessButton.setEnabled(false);
+            retryButton.setVisible(true);
         }
         else if (game.isGameOver()) {
-            messageLabel.setText("Game Over! The Word Was: "+game.getDisplayWord());
+            messageLabel.setText("Game Over! The Word Was: "+game.getSelectedWord());
             guessButton.setEnabled(false);
+            retryButton.setVisible(true);
+
         }
         else if(game.isWordGuessed())
         {
@@ -116,5 +151,7 @@ public class HangManGUI extends JFrame {
         }
 
         inputField.setText("");
+
+        drawingPanel.updateGame(game);
     }
 }

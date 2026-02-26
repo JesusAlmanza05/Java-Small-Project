@@ -23,7 +23,7 @@ public class HangMan {
     boolean gameOver = false;
     boolean alreadyGuessed=false;
     boolean found = false;
-    int lives=5;
+    int lives=6;
     char displayWord[];
 
 
@@ -36,6 +36,7 @@ public class HangMan {
     //method reads file and adds them to word list, then selects random word from list
     public void getWord() throws Exception
     {
+        words.clear();
         //reads file and adds words to array list
         Scanner filScanner = new Scanner(wordBank);
         while(filScanner.hasNextLine()){
@@ -108,7 +109,9 @@ public class HangMan {
         }
     }
     
-
+    public String getSelectedWord(){
+        return selectedWord;
+    }
     public String getDisplayWord() {
         return String.valueOf(displayWord);
     }
