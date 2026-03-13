@@ -8,7 +8,7 @@ public class HangMan {
 
 
     //word bank txt file
-    File wordBank = new File("fruits.txt");
+    File wordBank;
 
     //Array list to hold words from word bank
     ArrayList<String> words = new ArrayList<>();
@@ -23,25 +23,44 @@ public class HangMan {
     boolean gameOver = false;
     boolean alreadyGuessed=false;
     boolean found = false;
-    int lives=6;
+    int lives=6 ;
     char displayWord[];
 
 
     //Constructor calls methods to get word and display game
-    public HangMan() throws Exception{
-        getWord();
+    public HangMan(String language, String difficulty) throws Exception{
+        getWord(language,difficulty);
     }
 
 
     //method reads file and adds them to word list, then selects random word from list
-    public void getWord() throws Exception
+    public void getWord(String language,String difficulty) throws Exception
     {
+        if(language.equals("English"))
+            wordBank = new File("englishWords.txt");
+        else
+            wordBank = new File("spanishWords.txt");
         words.clear();
         //reads file and adds words to array list
         Scanner filScanner = new Scanner(wordBank);
-        while(filScanner.hasNextLine()){
-            words.add(filScanner.nextLine());
+        
+        while(filScanner.hasNextLine()) {
+
+            String word = filScanner.nextLine().toLowerCase();
+
+            int len = word.length();
+
+            if(difficulty.equals("Easy") && len <= 5)
+                words.add(word);
+
+            else if(difficulty.equals("Medium") && len >=6 && len <=7)
+                words.add(word);
+
+            else if(difficulty.equals("Hard") && len >=8)
+                words.add(word);
         }
+
+
         //randomly selects word from list
         Random rand = new Random();
         int i = rand.nextInt(words.size());

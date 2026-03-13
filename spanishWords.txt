@@ -1,0 +1,6 @@
+pera
+manzana
+platano
+sandia
+naranja
+mandarina

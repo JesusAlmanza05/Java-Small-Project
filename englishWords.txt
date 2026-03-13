@@ -1,0 +1,7 @@
+apple
+pear
+banana
+grape
+watermelon
+pineapple
+Coconut
