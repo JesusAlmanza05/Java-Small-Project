@@ -4,6 +4,8 @@ import java.awt.*;
 public class StartMenuGUI extends JFrame {
 
     JComboBox<String> languageBox;
+    JComboBox<String> userLanguage;
+
     JComboBox<String> difficultyBox;
     JButton startButton;
 
@@ -26,9 +28,16 @@ public class StartMenuGUI extends JFrame {
         mainPanel.add(title, BorderLayout.NORTH);
 
         JPanel centerPanel = new JPanel();
-        centerPanel.setLayout(new GridLayout(4,1,20,20));
+        centerPanel.setLayout(new GridLayout(6,1,20,20));
         centerPanel.setBorder(BorderFactory.createEmptyBorder(50,250,50,250));
         centerPanel.setBackground(new Color(40,40,40));
+
+        JLabel mainLanguage = new JLabel("Select The Language You Speak", SwingConstants.CENTER);
+        mainLanguage.setForeground(Color.WHITE);
+        mainLanguage.setFont(new Font("Arial", Font.BOLD, 40));
+
+        userLanguage = new JComboBox<>(new String[]{"English","Spanish"});
+        userLanguage.setFont(new Font("Arial", Font.BOLD, 25));
 
         JLabel langLabel = new JLabel("Select Language", SwingConstants.CENTER);
         langLabel.setForeground(Color.WHITE);
@@ -44,6 +53,8 @@ public class StartMenuGUI extends JFrame {
         difficultyBox = new JComboBox<>(new String[]{"Easy","Medium","Hard"});
         difficultyBox.setFont(new Font("Arial", Font.BOLD, 25));
 
+        centerPanel.add(mainLanguage);
+        centerPanel.add(userLanguage);
         centerPanel.add(langLabel);
         centerPanel.add(languageBox);
         centerPanel.add(diffLabel);
@@ -74,9 +85,10 @@ public class StartMenuGUI extends JFrame {
 
         String language = (String) languageBox.getSelectedItem();
         String difficulty = (String) difficultyBox.getSelectedItem();
+        String userLanguage=(String) this.userLanguage.getSelectedItem();
 
         try {
-            new GameGUI(language, difficulty);
+            new GameGUI(language, difficulty,userLanguage);
         } catch (Exception e) {
             e.printStackTrace();
         }

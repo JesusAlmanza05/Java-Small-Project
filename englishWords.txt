@@ -3,5 +3,9 @@ pear
 banana
 grape
 watermelon
-pineapple
-Coconut
+coconut
+mandarin
+strawberry
+orange
+peach
+cherry

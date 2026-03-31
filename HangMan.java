@@ -19,6 +19,7 @@ public class HangMan {
 
     //Initialize variables
     String selectedWord=" ";
+    String translation="";
     boolean winner = false;
     boolean gameOver = false;
     boolean alreadyGuessed=false;
@@ -28,8 +29,9 @@ public class HangMan {
 
 
     //Constructor calls methods to get word and display game
-    public HangMan(String language, String difficulty) throws Exception{
+    public HangMan(String language, String difficulty,String userLanguage) throws Exception{
         getWord(language,difficulty);
+        doTranslation(userLanguage);
     }
 
 
@@ -74,6 +76,65 @@ public class HangMan {
         }
         filScanner.close();
     }
+
+    public void doTranslation(String userLanguage) throws Exception
+        {
+            String selectedWord = this.selectedWord;
+            File spanishBank = new File("spanishWords.txt");
+            File englishBank = new File("englishWords.txt");
+
+            if(userLanguage.equals("English"))
+            {
+                int i=0;
+                Scanner filScanner = new Scanner(spanishBank);
+                while(filScanner.hasNextLine())
+                 {
+                    String placeHolder = filScanner.nextLine().toLowerCase();
+                    if(placeHolder.equals(selectedWord))
+                    {
+                        Scanner translationScanner = new Scanner(englishBank);
+                        for(int j=0; j<=i; j++)
+                        {
+                            translation =translationScanner.nextLine();
+                        }
+                        translationScanner.close();
+                        break;
+                    }
+                    else{
+                        i++;
+                    }
+                 }
+                filScanner.close();
+
+            }
+
+
+            if(userLanguage.equals("Spanish"))
+            {
+                int i=0;
+                Scanner filScanner = new Scanner(englishBank);
+                while(filScanner.hasNextLine())
+                 {
+                    String placeHolder = filScanner.nextLine().toLowerCase();
+                    if(placeHolder.equals(selectedWord))
+                    {
+                        Scanner translationScanner = new Scanner(spanishBank);
+                        for(int j=0; j<=i; j++)
+                        {
+                            translation =translationScanner.nextLine();
+                        }
+                        translationScanner.close();
+                        break;
+                    }
+                    else{
+                        i++;
+                    }
+                 }
+                filScanner.close();
+
+            }
+                
+        }
 
 
     //method checks if guessed letter is in selected word
@@ -130,6 +191,9 @@ public class HangMan {
     
     public String getSelectedWord(){
         return selectedWord;
+    }
+    public String getTranslationWord(){
+        return translation;
     }
     public String getDisplayWord() {
         return String.valueOf(displayWord);

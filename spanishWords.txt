@@ -1,6 +1,11 @@
-pera
 manzana
-platano
+pera
+banana
+uva
 sandia
-naranja
+coco
 mandarina
+fresa
+naranja
+durazno
+cereza

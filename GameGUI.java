@@ -16,9 +16,9 @@ public class GameGUI extends JFrame {
     JButton guessButton;
     JButton retryButton;
 
-    public GameGUI(String language, String difficulty) throws Exception {
+    public GameGUI(String language, String difficulty, String userLanguage) throws Exception {
 
-        game = new HangMan(language,difficulty);
+        game = new HangMan(language,difficulty,userLanguage);
         drawingPanel = new HangManDrawing(game);
         add(drawingPanel, BorderLayout.CENTER);
 
@@ -113,7 +113,6 @@ public class GameGUI extends JFrame {
     }
 
     private void handleGuess() {
-
         String input = inputField.getText().toLowerCase();
 
         if (input.length() != 1 || !Character.isLetter(input.charAt(0))) {
@@ -130,13 +129,13 @@ public class GameGUI extends JFrame {
         wordsUsed.setText("Guesses: "+game.getWordsGuessed());
 
         if (game.isWinner()) {
-            messageLabel.setText("You WIN! The Word Was: "+game.getSelectedWord());
+            messageLabel.setText("You WIN! The Word Was: "+game.getSelectedWord()+" | Translation: "+game.getTranslationWord());
             guessButton.setEnabled(false);
             retryButton.setVisible(true);
             inputField.setEnabled(false);
         }
         else if (game.isGameOver()) {
-            messageLabel.setText("Game Over! The Word Was: "+game.getSelectedWord());
+            messageLabel.setText("Game Over! The Word Was: "+game.getSelectedWord()+" | Translation: "+game.getTranslationWord());
             guessButton.setEnabled(false);
             retryButton.setVisible(true);
             inputField.setEnabled(false);
