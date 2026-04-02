@@ -32,14 +32,14 @@ public class StartMenuGUI extends JFrame {
         centerPanel.setBorder(BorderFactory.createEmptyBorder(50,250,50,250));
         centerPanel.setBackground(new Color(40,40,40));
 
-        JLabel mainLanguage = new JLabel("Select The Language You Speak", SwingConstants.CENTER);
+        JLabel mainLanguage = new JLabel("Select Your Native Language", SwingConstants.CENTER);
         mainLanguage.setForeground(Color.WHITE);
         mainLanguage.setFont(new Font("Arial", Font.BOLD, 40));
 
         userLanguage = new JComboBox<>(new String[]{"English","Spanish"});
         userLanguage.setFont(new Font("Arial", Font.BOLD, 25));
 
-        JLabel langLabel = new JLabel("Select Language", SwingConstants.CENTER);
+        JLabel langLabel = new JLabel("Select The Language You Want to Learn", SwingConstants.CENTER);
         langLabel.setForeground(Color.WHITE);
         langLabel.setFont(new Font("Arial", Font.BOLD, 40));
 

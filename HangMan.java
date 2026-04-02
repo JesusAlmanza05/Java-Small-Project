@@ -8,7 +8,7 @@ public class HangMan {
 
 
     //word bank txt file
-    File wordBank;
+    File wordBank;  
 
     //Array list to hold words from word bank
     ArrayList<String> words = new ArrayList<>();
