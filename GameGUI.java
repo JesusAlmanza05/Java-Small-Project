@@ -4,17 +4,17 @@ import java.awt.event.*;
 
 public class GameGUI extends JFrame {
 
-    HangManDrawing drawingPanel;
+    private HangManDrawing drawingPanel;
     HangMan game;
 
-    JLabel wordLabel;
-    JLabel livesLabel;
-    JLabel messageLabel;
-    JLabel wordsUsed;
+    private JLabel wordLabel;
+    private JLabel livesLabel;
+    private JLabel messageLabel;
+    private JLabel wordsUsed;
 
-    JTextField inputField;
-    JButton guessButton;
-    JButton retryButton;
+    private JTextField inputField;
+    private JButton guessButton;
+    private JButton retryButton;
 
     public GameGUI(String language, String difficulty, String userLanguage) throws Exception {
 

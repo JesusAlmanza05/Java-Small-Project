@@ -8,24 +8,24 @@ public class HangMan {
 
 
     //word bank txt file
-    File wordBank;  
+    private File wordBank;  
 
     //Array list to hold words from word bank
-    ArrayList<String> words = new ArrayList<>();
+    private ArrayList<String> words = new ArrayList<>();
 
     //Array that holds guesses
-    ArrayList<Character> guesses = new ArrayList<>();
+    private ArrayList<Character> guesses = new ArrayList<>();
 
 
     //Initialize variables
-    String selectedWord=" ";
-    String translation="";
-    boolean winner = false;
-    boolean gameOver = false;
-    boolean alreadyGuessed=false;
-    boolean found = false;
-    int lives=6 ;
-    char displayWord[];
+    private String selectedWord=" ";
+    private String translation="";
+    private boolean winner = false;
+    private boolean gameOver = false;
+    private boolean alreadyGuessed=false;
+    private boolean found = false;
+    private int lives=6 ;
+    private char displayWord[];
 
 
     //Constructor calls methods to get word and display game
@@ -36,7 +36,7 @@ public class HangMan {
 
 
     //method reads file and adds them to word list, then selects random word from list
-    public void getWord(String language,String difficulty) throws Exception
+    private void getWord(String language,String difficulty) throws Exception
     {
         if(language.equals("English"))
             wordBank = new File("englishWords.txt");
@@ -77,7 +77,7 @@ public class HangMan {
         filScanner.close();
     }
 
-    public void doTranslation(String userLanguage) throws Exception
+    private void doTranslation(String userLanguage) throws Exception
         {
             String selectedWord = this.selectedWord;
             File spanishBank = new File("spanishWords.txt");
@@ -170,7 +170,7 @@ public class HangMan {
     
 
     //method checks if player has guessed the entire word
-    public void checkWin()
+    private void checkWin()
     {
         if(String.valueOf(displayWord).equals(selectedWord))
         {
@@ -180,7 +180,7 @@ public class HangMan {
 
 
     //method reduces lives by 1 and checks if lives have reached 0
-    public void checkLoss()
+    private void checkLoss()
     {
         lives = lives - 1;
         if(lives==0)

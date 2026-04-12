@@ -3,11 +3,11 @@ import java.awt.*;
 
 public class StartMenuGUI extends JFrame {
 
-    JComboBox<String> languageBox;
-    JComboBox<String> userLanguage;
+    private JComboBox<String> languageBox;
+    private JComboBox<String> userLanguage;
 
-    JComboBox<String> difficultyBox;
-    JButton startButton;
+    private JComboBox<String> difficultyBox;
+    private JButton startButton;
 
     public StartMenuGUI() {
 

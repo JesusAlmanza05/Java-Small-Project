@@ -3,8 +3,8 @@ import java.awt.*;
 
 public class HangManDrawing extends JPanel {
 
-    HangMan game;
-    Image[] hangImages;
+    private HangMan game;
+    private Image[] hangImages;
 
     public HangManDrawing(HangMan game) {
         this.game = game;
