@@ -77,6 +77,8 @@ public class HangMan {
         filScanner.close();
     }
 
+    //gets the translation of the selected word by finding the index of the word in the original language file
+    //and getting the corresponding word from the other language file
     private void doTranslation(String userLanguage) throws Exception
         {
             String selectedWord = this.selectedWord;

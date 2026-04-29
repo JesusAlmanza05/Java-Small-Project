@@ -28,7 +28,7 @@ public class GameGUI extends JFrame {
 
         // Top panel
         JPanel topPanel = new JPanel();
-        topPanel.setLayout(new GridLayout(3,1));
+        topPanel.setLayout(new GridLayout(4,1));
         topPanel.setBackground(new Color(20,20,20));
 
 
@@ -46,10 +46,16 @@ public class GameGUI extends JFrame {
         wordsUsed.setFont(new Font("Arial", Font.PLAIN, 35));
         wordsUsed.setForeground(Color.WHITE);
 
+        JLabel translationLabel = new JLabel("Hint: " + game.getTranslationWord(), SwingConstants.CENTER);
+        translationLabel.setFont(new Font("Arial", Font.ITALIC, 30));
+        translationLabel.setForeground(Color.YELLOW);
+
         
         topPanel.add(livesLabel);
         topPanel.add(wordLabel);
         topPanel.add(wordsUsed);
+        topPanel.add(translationLabel);
+
         add(topPanel, BorderLayout.NORTH);
 
 
@@ -129,13 +135,13 @@ public class GameGUI extends JFrame {
         wordsUsed.setText("Guesses: "+game.getWordsGuessed());
 
         if (game.isWinner()) {
-            messageLabel.setText("You WIN! The Word Was: "+game.getSelectedWord()+" | Translation: "+game.getTranslationWord());
+            messageLabel.setText("You WIN! The Word Was: "+game.getSelectedWord());
             guessButton.setEnabled(false);
             retryButton.setVisible(true);
             inputField.setEnabled(false);
         }
         else if (game.isGameOver()) {
-            messageLabel.setText("Game Over! The Word Was: "+game.getSelectedWord()+" | Translation: "+game.getTranslationWord());
+            messageLabel.setText("Game Over! The Word Was: "+game.getSelectedWord());
             guessButton.setEnabled(false);
             retryButton.setVisible(true);
             inputField.setEnabled(false);
